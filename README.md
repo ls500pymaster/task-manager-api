@@ -39,7 +39,7 @@ This project offers a REST API to:
 1. Clone the repository:
 
    ```bash
-   git clone ...
+   git clone git@github.com:ls500pymaster/task-manager-api.git
    cd task-manager-api
    ```
 
