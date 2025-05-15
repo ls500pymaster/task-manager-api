@@ -1,7 +1,7 @@
 [project]
 name = "task-manager-api"
 version = "0.1.0"
-description = ""
+description = "Django REST API for managing tasks and tags"
 authors = [
     {name = "Aleksandr",email = "94639744+ls500pymaster@users.noreply.github.com"}
 ]
