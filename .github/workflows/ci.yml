@@ -37,7 +37,7 @@ jobs:
     - name: Pytest
       env:
         DJANGO_SETTINGS_MODULE: config.settings
-        DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+        DJANGO_SECRET_KEY: "secret-for-ci-tests"
       run: poetry run pytest -q
 
     # ---------- Build Docker image ----------
