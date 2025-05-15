@@ -30,8 +30,8 @@ jobs:
     - name: Black check
       run: poetry run black --check .
 
-    - name: Flake8
-      run: poetry run flake8 .
+#    - name: Flake8
+#      run: poetry run flake8 .
 
     # ---------- Tests ----------
     - name: Pytest

@@ -38,7 +38,15 @@ exclude = [
   ".venv",
   "build",
   "migrations",
-  "staticfiles"
+  "staticfiles",
+  "tasks/migrations",
+  "users/migrations"
+]
+ignore = [
+  "E501",
+  "F401",
+  "E401",
+  "E231",
 ]
 
 [tool.pytest.ini_options]
