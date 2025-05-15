@@ -8,6 +8,7 @@ A minimal Django project providing a REST API for managing Tasks and Tags.
 * [Tech Stack](#tech-stack)
 * [Quick Start](#quick-start)
 * [Docker](#docker)
+* [API Documentation](#api-documentation)
 
 ---
 
@@ -20,6 +21,8 @@ This project offers a REST API to:
 * Associate multiple Tags with a Task and vice versa
 * Filter Tasks by status and tags
 * Secure the API using HTTP Basic Authentication
+* Support nested write of Tags during Task creation/update
+* Provide auto-generated OpenAPI schema and Swagger UI
 
 ---
 
@@ -29,9 +32,12 @@ This project offers a REST API to:
 * Django 4.x
 * Django REST Framework
 * django-filter
+* drf-spectacular (OpenAPI / Swagger)
 * SQLite (default for local development)
 * Poetry for dependency management
 * Docker & Docker Compose (lightweight development setup)
+* GitHub Actions (CI: black, flake8, pytest, docker build)
+* pre-commit (optional)
 
 ---
 
@@ -84,6 +90,12 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+#### Format code
+```bash
+black .
+flake8 .
+```
+
 #### Run tests
 
 ```bash
@@ -106,6 +118,19 @@ python -m pytest -q
 ```
 
 ---
+
+## API Documentation
+
+After starting the server, explore the API here:
+
+- Swagger UI → [http://127.0.0.1:8000/api/docs/](http://127.0.0.1:8000/api/docs/)
+- ReDoc UI → [http://127.0.0.1:8000/api/redoc/](http://127.0.0.1:8000/api/redoc/)
+- Raw schema → [http://127.0.0.1:8000/api/schema/](http://127.0.0.1:8000/api/schema/)
+
+> Use the **"Authorize"** button in Swagger UI to authenticate with Basic Auth.
+
+---
+
 ## Contact
 
 Author: Aleksandr

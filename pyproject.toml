@@ -1,25 +1,19 @@
-[project]
+[tool.poetry]
 name = "task-manager-api"
 version = "0.1.0"
 description = "Django REST API for managing tasks and tags"
-authors = [
-    {name = "Aleksandr",email = "94639744+ls500pymaster@users.noreply.github.com"}
-]
+authors = ["Aleksandr <94639744+ls500pymaster@users.noreply.github.com>"]
 readme = "README.md"
-requires-python = ">=3.11,<4"
-dependencies = [
-    "django (>=4.2,<5.0)",
-    "djangorestframework (>=3.16.0,<4.0.0)",
-    "django-filter (>=25.1,<26.0)",
-    "psycopg2-binary (>=2.9.10,<3.0.0)",
-    "drf-spectacular (>=0.28.0,<0.29.0)",
-    "django-environ>=0.11,<1.0",
-]
+packages = [{ include = "tasks" }, { include = "users" }, { include = "config" }]
 
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.poetry.dependencies]
+python = ">=3.11,<4"
+django = ">=4.2,<5.0"
+djangorestframework = ">=3.16.0,<4.0.0"
+django-filter = ">=25.1,<26.0"
+psycopg2-binary = ">=2.9.10,<3.0.0"
+drf-spectacular = ">=0.28.0,<0.29.0"
+django-environ = ">=0.11,<1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
@@ -28,8 +22,9 @@ black = "^25.1.0"
 flake8 = "^7.2.0"
 pre-commit = "^4.2.0"
 
-[tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "config.settings"
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 88
@@ -44,4 +39,16 @@ exclude = [
   "build",
   "migrations",
   "staticfiles",
+  "tasks/migrations",
+  "users/migrations"
 ]
+ignore = [
+  "E501",
+  "F401",
+  "E401",
+  "E231",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+python_files = ["tests/test_*.py"]

@@ -15,6 +15,7 @@ RUN poetry install --no-root --only main,dev \
 
 COPY . /app/
 
+ENV DJANGO_SECRET_KEY=secret-for-docker-build
 RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
