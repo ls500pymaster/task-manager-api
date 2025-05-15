@@ -7,26 +7,78 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(help_text='The name of the tag', max_length=30, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        help_text="The name of the tag", max_length=30, unique=True
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Task',
+            name="Task",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(help_text='The title of the task', max_length=255)),
-                ('description', models.TextField(blank=True, help_text='Description of the task')),
-                ('status', models.CharField(choices=[('pending', 'Pending'), ('in_progress', 'In Progress'), ('done', 'Done')], default='pending', help_text='Current status of the task', max_length=20)),
-                ('created_at', models.DateTimeField(auto_now_add=True, help_text='Date and time the task was created')),
-                ('tags', models.ManyToManyField(blank=True, help_text='Tags related to the task', related_name='tasks', to='tasks.tag')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(help_text="The title of the task", max_length=255),
+                ),
+                (
+                    "description",
+                    models.TextField(blank=True, help_text="Description of the task"),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("pending", "Pending"),
+                            ("in_progress", "In Progress"),
+                            ("done", "Done"),
+                        ],
+                        default="pending",
+                        help_text="Current status of the task",
+                        max_length=20,
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True,
+                        help_text="Date and time the task was created",
+                    ),
+                ),
+                (
+                    "tags",
+                    models.ManyToManyField(
+                        blank=True,
+                        help_text="Tags related to the task",
+                        related_name="tasks",
+                        to="tasks.tag",
+                    ),
+                ),
             ],
         ),
     ]

@@ -1,7 +1,8 @@
 import pytest
-from django.urls import reverse
 from rest_framework.test import APIClient
+
 from tasks.models import Task, Tag
+
 
 @pytest.fixture
 def api_client(db, django_user_model):

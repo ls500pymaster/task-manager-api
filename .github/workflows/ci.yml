@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop, ci/**, feature/**, fix/**]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    # ---------- Python & Poetry ----------
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install Poetry
+      uses: abatilo/actions-poetry@v3
+      with:
+        poetry-version: "1.8.2"
+
+    - name: Install dependencies (main + dev)
+      run: poetry install --no-interaction --only main,dev
+
+    # ---------- Linters ----------
+    - name: Black check
+      run: poetry run black --check .
+
+    - name: Flake8
+      run: poetry run flake8 .
+
+    # ---------- Tests ----------
+    - name: Pytest
+      env:
+        DJANGO_SETTINGS_MODULE: config.settings
+        DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+      run: poetry run pytest -q
+
+    # ---------- Build Docker image ----------
+    - name: Build Docker image
+      run: docker build -t task-manager-api:ci .
