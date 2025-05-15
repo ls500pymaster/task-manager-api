@@ -18,6 +18,8 @@ class Task(models.Model):
         IN_PROGRESS = "in_progress", "In Progress"
         DONE = "done", "Done"
 
+    class Meta:
+        ordering = ['-created_at']
 
     title = models.CharField(
         max_length=255,
@@ -43,7 +45,6 @@ class Task(models.Model):
         blank=True,
         help_text="Tags related to the task"
     )
-
 
     def __str__(self):
         return f"[{self.title}] {self.status}"

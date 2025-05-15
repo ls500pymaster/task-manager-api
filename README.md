@@ -7,6 +7,7 @@ A minimal Django project providing a REST API for managing Tasks and Tags.
 * [Overview](#overview)
 * [Tech Stack](#tech-stack)
 * [Quick Start](#quick-start)
+* [Docker](#docker)
 
 ---
 
@@ -67,6 +68,42 @@ This project offers a REST API to:
    ```bash
    python manage.py runserver
    ```
+___
+## Local Development & Testing
+One‑time setup
+
+```bash
+poetry install --no-root`
+```
+
+#### Run the app
+
+```bash
+poetry shell
+python manage.py migrate
+python manage.py runserver
+```
+
+#### Run tests
+
+```bash
+pytest -q
+```
+
+
+## Docker
+
+1. Rebuild the image and start container
+```bash
+docker compose down
+docker compose build --no-cache web
+docker compose up -d web
+```
+
+2. Run tests in container
+```bash
+python -m pytest -q
+```
 
 ---
 ## Contact
