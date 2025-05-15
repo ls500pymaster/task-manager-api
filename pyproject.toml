@@ -1,18 +1,19 @@
 [project]
 name = "task-manager-api"
 version = "0.1.0"
-description = ""
+description = "Django REST API for managing tasks and tags"
 authors = [
     {name = "Aleksandr",email = "94639744+ls500pymaster@users.noreply.github.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<4"
 dependencies = [
     "django (>=4.2,<5.0)",
     "djangorestframework (>=3.16.0,<4.0.0)",
     "django-filter (>=25.1,<26.0)",
     "psycopg2-binary (>=2.9.10,<3.0.0)",
-    "drf-spectacular (>=0.28.0,<0.29.0)"
+    "drf-spectacular (>=0.28.0,<0.29.0)",
+    "django-environ>=0.11,<1.0",
 ]
 
 
@@ -23,7 +24,24 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
 pytest-django = "^4.11.1"
+black = "^25.1.0"
+flake8 = "^7.2.0"
+pre-commit = "^4.2.0"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "config.settings"
 
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.flake8]
+max-line-length = 88
+exclude = [
+  ".git",
+  "__pycache__",
+  ".venv",
+  "build",
+  "migrations",
+  "staticfiles",
+]
