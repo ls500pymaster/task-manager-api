@@ -5,6 +5,7 @@ from tasks.models import Task, Tag
 
 
 @pytest.fixture
+# Create user and test auth
 def api_client(db, django_user_model):
     user = django_user_model.objects.create_user("tester", "t@test.com", "pass")
     client = APIClient()

@@ -1,7 +1,10 @@
 from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.response import Response
+
 from .models import Task, Tag
 from .serializers import TaskSerializer, TagSerializer
+from rest_framework.decorators import action
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -10,6 +13,13 @@ class TaskViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = {"status": ["exact"], "tags__name": ["exact"]}
     search_fields = ["title", "description"]
+
+    @action(methods=["POST"], detail=True)
+    def tasks(self, request, pk=None):
+        task = self.get_object()
+        tags = task.tags.all()
+        serializer = TaskSerializer(tags, many=True, context={"request": request})
+        return Response(serializer.data)
 
 
 class TagViewSet(viewsets.ModelViewSet):

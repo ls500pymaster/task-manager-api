@@ -15,7 +15,7 @@ class Task(models.Model):
         DONE = "done", "Done"
 
     class Meta:
-        ordering = ["-created_at"]
+        ordering = ["-created_at"]  # orderby
 
     title = models.CharField(max_length=255, help_text="The title of the task")
     description = models.TextField(blank=True, help_text="Description of the task")
